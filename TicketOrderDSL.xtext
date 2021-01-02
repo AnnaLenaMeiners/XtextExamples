@@ -1,0 +1,25 @@
+grammar org.xtext.example.mydsl1.TicketOrderDSL with org.eclipse.xtext.common.Terminals
+
+generate ticketOrderDSL "http://www.xtext.org/example/mydsl1/TicketOrderDSL"
+
+Model:
+	orders+=Order*;
+	
+Order:
+	singleOrder | multiOrder;
+	
+singleOrder:
+	"order" "1" "ticket" "for" concert "on" DATE "on" "behalf" "of" name=ID
+;
+
+multiOrder:
+	"order" INT "tickets" "for" concert "on" DATE ("and" DATE)? "on" "behalf" "of" name=ID
+;
+
+concert:
+	"Jörg" "Pilawas" "Silvestershow" | "Avicii" "Tribute" "Tour" | "Rolling" "Stones" "Show"
+;
+
+terminal DATE:
+	('0'..'3') ('0'..'9')'.'('0'..'1') ('0'..'9')'.202'('0'..'3')
+;
