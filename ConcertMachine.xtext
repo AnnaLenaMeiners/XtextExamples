@@ -1,0 +1,31 @@
+grammar org.xtext.example.ConcertMachine with org.eclipse.xtext.common.Terminals
+
+generate concertMachine "http://www.xtext.org/example/ConcertMachine"
+
+Concertmachine :
+	'I' Entryevent
+	'so' 'I' 'am' Entrystate
+	'then' 'I' Visitevent
+	'with' (people+=Person)+
+	'then' 'I' Endevent
+	'with' person=[Person]
+	'so' 'I' 'am' Endstate
+	'end';
+
+Entryevent :
+ 	'buyTicket' | 'stealTicket';
+ 
+Visitevent :
+ 	'danceAtconcert' | 'quietlyListen';
+ 
+Endevent :
+ 	'goToAfterShowParty' | 'goHome';
+
+Entrystate :
+	'excited' | 'calm';
+	
+Endstate :
+	'relaxed' | 'happy';
+
+Person :
+	name=ID;
